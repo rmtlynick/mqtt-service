@@ -1,0 +1,18 @@
+dependencies:
+  dir:
+    - data
+    - log
+actions:
+  start:
+    command: docker-compose up -d
+  stop:
+    command: docker-compose down
+  status:
+    command: docker-compose ps
+    alias: ps
+  restart:
+    command: ops start && ops stop
+    alias: r
+  logs:
+    command: docker-compose logs
+    alias: l

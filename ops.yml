@@ -1,0 +1,32 @@
+dependencies:
+  gem:
+    - bundler
+    - rerun
+  custom:
+    - bundle
+    - cd mosquitto && ops start
+forwards:
+  mqtt: mosquitto
+actions:
+  start:
+    command: echo update me
+  stop:
+    command: echo update me too
+  test:
+    command: rspec
+    alias: t
+  test-watch:
+    command: rerun -x ops test
+    alias: tw
+  build:
+    command: gem build *.gemspec
+    alias: b
+  install:
+    command: gem install "$LATEST_GEM"
+    alias: i
+  build-and-install:
+    command: ops build && ops install
+    alias: bi
+options:
+  environment:
+    LATEST_GEM: "`ls -t | head -n 1`"

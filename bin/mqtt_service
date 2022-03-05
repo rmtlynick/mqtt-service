@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+require 'mqtt_service'
+
+mqtt_service = MqttService.new
+mqtt_service.subscribe_to_topics
+mqtt_service.loop

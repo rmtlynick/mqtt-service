@@ -1,0 +1,57 @@
+mqtt:
+  client_id: mqttsvc_0
+  host: mqtt
+  port: 1883
+  ssl: false
+  ca_cert: >
+    -----BEGIN CERTIFICATE-----
+    MIIDcjCCAlqgAwIBAgIJAMaeIM+2REXxMA0GCSqGSIb3DQEBCwUAME4xCzAJBgNV
+    BAYTAkNBMRMwEQYDVQQIDApTb21lLVN0YXRlMRQwEgYDVQQKDAtUaW55dG93biBD
+    QTEUMBIGA1UEAwwLVGlueXRvd24gQ0EwHhcNMTgwMTI1MDEzMDA3WhcNMjgwMTIz
+    MDEzMDA3WjBOMQswCQYDVQQGEwJDQTETMBEGA1UECAwKU29tZS1TdGF0ZTEUMBIG
+    A1UECgwLVGlueXRvd24gQ0ExFDASBgNVBAMMC1Rpbnl0b3duIENBMIIBIjANBgkq
+    hkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnZCmRfUn5k+mErbUQOhecjUVcw2EfNRX
+    f71pdhxzIpUrtOlfbjba+eJfwo7ANfQ4hIVoQbKmqLexTCzvDhMMdtmyJJRoDVmN
+    Yx+1TDv8/A8sLR58QLDy5OTwcumKXAkrahKMxEDB0SgYKnM/2p+vbRJim5tsPGEL
+    VDucWsJK3bWpPjvlyHUY6ttCwl4+EPi2T8IJK7Ka7gsTtJJ5LuUZU5zYrH64WYEM
+    1l8toT9ayPWcp5gEpVtTQ8blTBxnFrP2IsEqMEMVmebo/4SwX8pTAvO90F0wH7Hm
+    n4VNrtm5JiNKMUhiGbwBBRSDn4Ffbv974L6ZVzK9Y/HPMqY6f8LtYQIDAQABo1Mw
+    UTAdBgNVHQ4EFgQUElYxF8b0JI6L9VFHUGesOygIFp0wHwYDVR0jBBgwFoAUElYx
+    F8b0JI6L9VFHUGesOygIFp0wDwYDVR0TAQH/BAUwAwEB/zANBgkqhkiG9w0BAQsF
+    AAOCAQEATkBBDyw2NSpFIQJLi77YTtzpKGExD83+h3UayaIqw59qZ5o0EAZsKFO/
+    CJ7YyzaLblGEZ0mgO7iiqEeh5HVnr6tu4f48o0Q65v61aKjMCl/ZNXylWzTNXjHn
+    fBvg//04nDnaZZWZIImWJHL4qydoybRPHjLW8OmOyjyYaHU7ueA9WyXUxT3P8cBO
+    9DAAPRY5zHJ6/r0GXSGQpGhYD+u8LOaikiUkqX1nzUt5EEWq5ZISEPc8JUAX7kDs
+    i6GfwLkhe71oKWWi8ndvmSnOChnJI9clAl3SplOlF4V52RximajB9eqZ8T5WH1pu
+    QwgCHT0qrw7aYWqSH+TcOvtHhlEHrQ==
+    -----END CERTIFICATE-----
+  topics:
+    sub:
+      - "/home/hello/in"
+      - "/home/shadowbox/cmd"
+    boot: "/home/boot"
+    lwt: "/home/lwt"
+    log: "/home/log"
+    pub: "/home/hello/out"
+    ping: "/home/ping"
+    pong: "/home/pong"
+  qos: 2
+  retain: 0
+  keepalive: 15
+  client:
+    omit_retained: true
+conncheck:
+  delay: 60000
+  host: "mqtt"
+  url: "http://{{CONNCHECK_HOST}}/ping.json"
+build:
+  registry_host: 'registry:5000'
+log:
+  -
+    level: info
+    path: STDOUT
+  -
+    level: info
+    path: log/mqtt_service.log
+    size: 52428800
+    count: 5
